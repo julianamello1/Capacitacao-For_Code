@@ -33,4 +33,3 @@ qntd_dias = int(input("Qual a duração da viagem, em dias? "))
 print(f"\nPerfeito! Segundo seus dados inseridos, você fará uma viagem para {destino}, durante {qntd_dias} dias.")
 print(f"\nSeu orçamento é de R$ {orcamento_disponivel}. O valor da passagem é de R$ {custo_da_passagem} e o da hospedagem, R$ {custo_da_hospedagem}.")
 
-
