@@ -16,17 +16,35 @@ o progresso via Git.
 
 ## entradas dos dados
 
+# RESTRIÇÃO: Restrição Importante
+# O programa deve garantir que nenhum valor numérico inserido seja negativo. Caso
+# o usuário insira um valor inválido, o programa deve exibir uma mensagem de erro e
+# encerrar a execução imediatamente.
+
+# vou criar uma função de validação e chama-la depois de cada input
+
+def validar(valor):
+    if valor < 0:
+        raise ValueError("Valor inválido! Não são aceitos valores negativos!")
+        # descobri um jeito melhor que: print("Valor inválido! Não são aceitos números negativos!!!")
+        # o raise interrompe imediatamente e mostra uma mensagem técnica. o valueerror é uma exceção nativa do pyhton pra quando o valor inserido não puder ser aceito na situação
+
+
 #obs: se nao for string no input, tem que fazer o casting
 
 orcamento_disponivel = float(input("Qual o orçamento disponível para a sua viagem, em reais? "))
+validar(orcamento_disponivel)
 
 destino = input("Qual é o destino da sua viagem? ")
 
 custo_da_passagem = float(input("Qual é o valor da passagem, em reais? "))
+validar(custo_da_passagem)
 
 custo_diario_da_hospedagem = float(input("Qual é o custo da hospedagem, em euros? "))
+validar(custo_diario_da_hospedagem)
 
 qntd_dias = int(input("Qual a duração da viagem, em dias? "))
+validar(qntd_dias)
 
 # organização e checagem dos dados inseridos:
 
@@ -63,13 +81,13 @@ def validacao_orcamento(custo_total, orcamento_disponivel):
 # status final da viagem (função) = viavel se orçamento valido && qntd dias > 0
 # calculo do quanto sobrará (orçamento - custo) ou quanto faltará (custo - orçamento)
 def status_viagem(validacao_orcamento, orcamento_disponivel, custo_total, qntd_dias):
-    if validacao_orcamento and qntd_dias > 0:
+    if validacao_orcamento and qntd_dias > 0: # se validacao_orcamento for true, ou seja, orçamento válido
         sobra = orcamento_disponivel - custo_total
-        print(f"\tSua viagem é VIÁVEL!!! :D E ainda sobram R$ {sobra}!!!")
+        print(f"\tSua viagem é VIÁVEL!!! :D E ainda sobram R${sobra}!!!")
         return True
     else:
         falta = custo_total - orcamento_disponivel
-        print(f"\tPoxa, sua viagem realmente não é viável :( Faltam R$ {falta} para fazer acontecer.....(ou a duração inserida é inválida)")
+        print(f"\tPoxa, sua viagem realmente não é viável :( Faltam R${falta} para fazer acontecer.....(ou a duração inserida é inválida)")
         return False
     
 
