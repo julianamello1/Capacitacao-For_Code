@@ -21,8 +21,18 @@ O usuário precisa apenas inserir as informações pedidas respeitando a unidade
 A partir disso, todos os cálculos e resultados já são printados na tela.
 
 -> Respostas às perguntas teóricas:  
-■ Qual a diferença entre o comando git add . e git commit -m "mensagem"?
+■ Qual a diferença entre o comando git add . e git commit -m "mensagem"?  
+São duas etapas diferentes do processo de salvar o projeto.  
+O "git add " determina que arquivos terão as alterações salvas para serem mandadas, ou seja, o que será colocado no "staging area", uma área temporária. É como se preparasse o arquivo. No caso específico do "git add .", é que todas as alterações de toda a pasta e as subpastas serão colocadas.  
+Enquanto isso, o "git commit -m "mensagem" representa o salvamento permanente desses arquivos que foram previamente preparados, junto com uma mensagem do que foi feito.  
+
+
 ■ Por que é necessário realizar o casting (conversão de tipo) ao usar a função
-input() em Python para cálculos matemáticos?
+input() em Python para cálculos matemáticos?  
+É necessário, pois a função input() sempre vai retornar uma string. Se não for feito o casting (forçar o que foi recebido a ser tratado e se comportar como algo que não é string), ao tentar combinar a string não convertida com algum número em uma operação, acontece um TypeError, já que os tipos não são compatíveis. Observação: se não fizer a conversão pra int, float etc e tentar somar, o Python irá concatenar as duas strings, ou seja, juntá-las, combiná-las.
+
+
 ■ O que acontece se tentarmos somar uma variável do tipo str com uma do
-tipo float?
+tipo float?  
+Acontece um erro do tipo TypeError, já que os dois tipos de variáveis não são compatíveis para operações, já que, é apenas possível somar matematicamente números float, int etc e apenas possível "somar" (concatenar) strings.
+
