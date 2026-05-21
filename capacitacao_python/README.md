@@ -36,3 +36,18 @@ input() em Python para cálculos matemáticos?
 tipo float?  
 Acontece um erro do tipo TypeError, já que os dois tipos de variáveis não são compatíveis para operações, já que, é apenas possível somar matematicamente números float, int etc e apenas possível "somar" (concatenar) strings.
 
+
+2) [simulador_tcg]
+
+   -> Respostas às perguntas teóricas:
+■ Qual é a principal diferença prática entre usar um laço for e um laço
+while em Python? Por que o while foi a melhor escolha para este
+duelo?
+
+■ Para que serve a palavra-chave return dentro de uma função? O que
+acontece se uma função fizer um cálculo matemático mas não possuir
+o return?
+
+■ O que é um "Loop Infinito" e como podemos evitá-lo ao construir uma
+estrutura while?
+
