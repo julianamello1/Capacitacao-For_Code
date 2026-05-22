@@ -61,8 +61,8 @@ def atacar(nome_atacante, ataque, nome_defensor, hp_defensor):
 
 # função que exibe placar
 def exibir_placar(nome_monstro1, pontos_vida_m1, nome_monstro2, pontos_vida_m2):
-    print(f"\n\tVida de {monstro1["nome"]}: {monstro1["pontos_vida"]} HP")
-    print(f"\n\tVida de {monstro2["nome"]}: {monstro2["pontos_vida"]} HP")
+    print(f"\n\tVida de {nome_monstro1}: {pontos_vida_m1} HP")
+    print(f"\n\tVida de {nome_monstro2}: {pontos_vida_m2} HP")
     return
 
 
