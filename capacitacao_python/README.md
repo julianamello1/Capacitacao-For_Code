@@ -36,24 +36,27 @@ input() em Python para cálculos matemáticos?
 
 ■ O que acontece se tentarmos somar uma variável do tipo str com uma do
 tipo float?  
-Acontece um erro do tipo TypeError, já que os dois tipos de variáveis não são compatíveis para operações, já que, é apenas possível somar matematicamente números float, int etc e apenas possível "somar" (concatenar) strings.
+Acontece um erro do tipo TypeError, já que os dois tipos de variáveis não são compatíveis para operações, já que, é apenas possível somar matematicamente números float, int etc e apenas possível "somar" (concatenar) strings.  
+
+
 
 
 2) [simulador_tcg]
    
--> Explicação do funcionamento do programa:
-   O programa funciona, inicialmente, pedindo as informações (nome, HP e pontos de ataque) de cada monstro.
-   Uma função de validação certifica de que os dados numéricos inseridos são maiores do que zero.
+-> Explicação do funcionamento do programa:  
+   O programa funciona, inicialmente, pedindo as informações (nome, HP e pontos de ataque) de cada monstro.  
+   Uma função de validação certifica de que os dados numéricos inseridos são maiores do que zero.  
    A função de ataque funciona calculando o dano, e subtrai da vida do defensor (nesse primeiro caso, o 2), e retorna o HP do que foi atacado. Também faz com que, se a vida do defensor chegar a ser menor do que zero, ele vai mudar pra esse valor ser zero, já que não pode ser negativo.    
    A função de exibição do placar funciona printando na tela as informações de cada monstro.
-   O loop while, que é do combate em si, roda enquanto a vida tanto do monstro 1 quanto do monstro 2 for maior do que zero.
-   Dentro dele, como foi previamente definido no enunciado, o monstro 1 ataca o mosntro 2. Então, abre uma condicional para se o monstro 2 tiver sobrevivido (ou seja, vida ainda é maior do que zero). Se sim, agora o atacante é ele. O placar é exibido depois de cada ciclo.
-   Se o monstro 1 sobreviver a esse ataque (o loop while verifica isso), ele ataca novamente e assim vai, até um dos monstros chegar a um HP = zero.
-   Quando alguma das vidas for zerada, o loop acaba e uma condicional define o que printar na tela (dependendo do monstro vencedor).
-   Também tem, dentro do loop da batalha, um contador dos turnos de ataque.
+   O loop while, que é do combate em si, roda enquanto a vida tanto do monstro 1 quanto do monstro 2 for maior do que zero.  
+   Dentro dele, como foi previamente definido no enunciado, o monstro 1 ataca o mosntro 2. Então, abre uma condicional para se o monstro 2 tiver sobrevivido (ou seja, vida ainda é maior do que zero). Se sim, agora o atacante é ele.  
+   O placar é exibido depois de cada ciclo.  
+   Se o monstro 1 sobreviver a esse ataque (o loop while verifica isso), ele ataca novamente e assim vai, até um dos monstros chegar a um HP = zero.  
+   Quando alguma das vidas for zerada, o loop acaba e uma condicional define o que printar na tela (dependendo do monstro vencedor).  
+   Também tem, dentro do loop da batalha, um contador dos turnos de ataque.  
    
 
--> Instruções de como rodar o script:  
+-> Instruções de como rodar o script:    
 Tudo que o usuário precisaria fazer é escrever as informações pedidas pelo programa, respeitando o tipo de dado e s restrições (HP e ataque não podem ser inicializadas como zero ou como negativos).  
 
 
