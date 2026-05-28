@@ -43,3 +43,41 @@ lotes = ['2023-ETA-01', '2023-ACE-01', '2023-ETA-01', '2023-SUL-01',
 purezas = [99.5, 92.0, 99.5, 98.0, 99.9, 98.5, 96.0, 99.0, 99.0, 98.8, 99.5, 92.0, 99.2,
 96.0, 99.9, 98.0, 99.0, 95.0, 99.5, 92.0, 98.8, 99.0, 99.9, 99.5, 92.0, 99.0, 98.0, 98.5,
 95.0, 96.0]
+
+## Passos do programa
+
+# Passo 1: Identificação dos Tipos de Reagentes (Set)
+
+# como set() é uma estrutura de dados que armazena elementos únicos, podemos usá-lo para identificar os tipos únicos de reagentes disponíveis no inventário.
+tipos_reagentes = set(reagentes)
+print("\nTipos únicos de reagentes disponíveis:", tipos_reagentes)
+
+# para exibir a quantidade, é preciso usar a função len(), que conta o numero de elementos em um iterável. 
+print("\nQuantidade de reagentes únicos:", len(tipos_reagentes))
+
+
+# Passo 2: Estruturação do Inventário (Zip)
+
+# a função zip() é usada para combinar listas em uma única estrutura de dados, onde cada elemento é uma tupla contendo as informações correspondentes das 3 listas juntas.
+inventario = list(zip(reagentes, lotes, purezas))
+print("\nInventário (reagente, lote, pureza): ")
+
+# loop que vai printar cada itm do inventário, onde cada item é uma tupla (lista imutável) contendo as informações do reagente, lote e pureza.
+for item in inventario:
+    print(item)
+
+
+# Passo 3: Geração de Relatório (Unpacking)
+
+# pra fazer unpacking, pode fazer com for normal e um print(f"{lote} {reagente} {pureza}")
+# ou usando o enumerate(), que percorre a lista e devolve em tuplas tbm
+
+# com for normal:
+#for reagentes, lotes, purezas in inventario:
+#   print(f"LOTE: [{lotes}] | REAGENTE: [{reagentes}] | PUREZAS: [{purezas}%] ")
+
+# com enumerate()
+for indice, (reagentes, lotes, purezas) in enumerate(inventario):
+    print(f"LOTE: [{lotes}] | REAGENTE: [{reagentes}] | PUREZA: [{purezas}%] ")
+
+# a vantagem do enumerate é que ele literalmente numera os itns, então, se quisesse saber o índice de cada frasco, teria que usar ele
