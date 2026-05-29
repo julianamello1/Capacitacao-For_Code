@@ -77,8 +77,8 @@ for item in inventario:
 #   print(f"LOTE: [{lotes}] | REAGENTE: [{reagentes}] | PUREZAS: [{purezas}%] ")
 
 # com enumerate()
-for indice, (reagentes, lotes, purezas) in enumerate(inventario):
-    print(f"LOTE: [{lotes}] | REAGENTE: [{reagentes}] | PUREZA: [{purezas}%] ")
+for indice, (reagente, lote, pureza) in enumerate(inventario):
+    print(f"LOTE: [{lote}] | REAGENTE: [{reagente}] | PUREZA: [{pureza}%] ")
 
 # a vantagem do enumerate é que ele literalmente numera os itns, então, se quisesse saber o índice de cada frasco, teria que usar ele
 
@@ -87,13 +87,7 @@ for indice, (reagentes, lotes, purezas) in enumerate(inventario):
 
 # experimentos sensíveis exigem pureza >= 98.0%
 
-
-lotes_aprovados_exp_sensiveis = [lotes for reagentes, lotes, purezas in inventario if purezas >= 98.0]
-# [obs] list comprehension: 
-print(f"Lotes Aprovados para Experimentos Sensíveis: {lotes_aprovados_exp_sensiveis}")
-
-
-lotes_aprovados_exp_sensiveis = [lotes for reagentes, lotes, purezas in inventario if purezas >= 98.0]
+lotes_aprovados_exp_sensiveis = [lote for reagente, lote, pureza in inventario if pureza >= 98.0]
 # [obs] list comprehension: lista = [(o que quer guardar na lista) for (item/ns na lista) in (lista de onde to colocando) if (condição)]
 # ou seja, ve na lista original os itens e, se obedecer a condição coloca o que eu falei nessa nova lista
 # por isso coloco no começo "lotes", já que essa seria a informação da lista original que eu quero colocar na lista nova
@@ -101,6 +95,3 @@ lotes_aprovados_exp_sensiveis = [lotes for reagentes, lotes, purezas in inventar
 # e eu quero só uma delas na minha lista nova e quero analisar a condição de só uma delas tbm
 print(f"Lotes Aprovados para Experimentos Sensíveis: {lotes_aprovados_exp_sensiveis}")
 
-lotes_aprovados_exp_sensiveis = [lotes for reagentes, lotes, purezas in inventario if purezas >= 98.0]
-# [obs] list comprehension: 
-print(f"Lotes Aprovados para Experimentos Sensíveis: {lotes_aprovados_exp_sensiveis}")
