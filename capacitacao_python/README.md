@@ -81,3 +81,31 @@ estrutura while?
 Um loop infinito é um loop que simplesmente não para de rodar. Seja por conta de uma condição de parada falha ou até mesmo nunca atingida.  
 Para evitá-lo, o ideal é inicializar uma variável de controle que seja atualizada e utilizar uma condição de parada válida e atingível.
 
+
+3. [inventario_lab]
+
+-> Explicação do funcionamento do programa:  
+O programa recebe, do enunciado, os nomes, lotes e purezas dos 30 reagentes do laboratório.  
+Então, primeiro, faz uma lista do reagentes únicos e aplica o set() na lista dos reagentes para remover os nomes duplicados. Depois, utilizando a funçao len() nessa lista de únicos, consegue a quantidade exata dos reagentes.  
+Para o segundo passo, faz uma lista inventario, que é criada convertendo o zip das três listas dadas no enunciado. O zip() junta informações de 2 ou mais iteráveis e transforma em tuplas. Com o list(), esse conjunto de tuplas é convertido para uma lista de tuplas.  
+No passo 3, foi o unpacking das informações, ou seja, os valores são extraídos. Utilizei um for e coloquei no padrão Lote | Reagente | Pureza.  
+O último passo foi a filtragem com o list comprehension. Utilizei esse método com condicional if para criar uma lista com apenas os códigos dos lotes aprovados (pureza >= 98%), tudo em uma só linha.  
+
+-> Respostas às perguntas teóricas:  
+■ Levando em consideração a estrutura do nosso inventário, por que
+seria incorreto usar a função dict() para transformar o resultado do
+nosso zip() em um dicionário, utilizando o nome do reagente como
+"Chave" e o lote como "Valor"?  
+Seria incorreto pois, em um dicionário, as chaves devem ser únicas e, no inventário, os reagentes se repetem, o que causaria uma sobreescrição repetida a cada vez que um mesmo reagente fosse colocado, ficando disponível apenas o último escrito.  
+
+■ O que a função zip() gera na memória do Python antes de usarmos a
+função list() para forçar a visualização dos dados?  
+Quando a função zip() é utilizada, ela junta as informações em tuplas, mas não gera um tipo de dado dessas tuplas. Gera um obejto especial (zip objetct), que é, de modo resumido, basicamente ponteiros para as listas originais, então não é possível fazer um print para visualizar as informações zipadas.  
+Dessa forma, é preciso converter para dict, list ou tuple utilizando funções para, assim, conseguir a visualização adequada.  
+
+■ Observando o seu código final, de que forma o List Comprehension
+substitui a necessidade de criar uma lista vazia e usar a estrutura de
+repetição for tradicional acompanhada do método .append()?  
+O list comprehension é uma otimização da sintaxe. Todas as três etapas de criar uma lista, percorrer os dados e inserí-los são feitos em uma só linha.  
+Já cria a lista e, dentro dos colchetes, já fala o que vai inserir, que dados vai percorrer e a condição para a inserção (se houver).  
+
