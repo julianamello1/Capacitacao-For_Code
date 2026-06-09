@@ -91,11 +91,11 @@ class GerenciadorGitKeep: # classe que vai gerenciar a criação e remoção dos
         for dirpath, dirnames, filenames in os.walk(self.root_path): # percorre os diretórios a partir do caminho raiz
             # tem que ignorar o diretório de logs para não criar arquivos .gitkeep lá
             if self.gerenciador_log.log_dir in dirpath.split(os.sep): # dirpath guarda o caminho do diretório atual. split(os.sep) divide o caminho em partes usando o separador de diretórios do sistema operacional
-                continue    
-            if self.gerenciador_log.log_dir in dirnames:
-                dirnames.remove(self.gerenciador_log.log_dir) # remove o diretório de logs da lista de diretórios a serem percorridos
-            if dirpath == self.root_path:
-                continue # ignora o diretório raiz para não criar um arquivo .gitkeep lá
+                continue  # se "logs" estiver em qualquer parte do caminho do diretório atual, ignora para não criar arquivos .gitkeep lá
+            if self.gerenciador_log.log_dir in dirnames: # se "logs" estiver na lista de nomes de diretórios
+                dirnames.remove(self.gerenciador_log.log_dir) # remove o diretório de logs da lista de diretórios a serem percorridos, ou seja, não entra
+            if dirpath == self.root_path: # se a pasta atual que tá percorrendo for a pasta raiz,
+                continue # ignora o diretório raiz para não criar um arquivo .gitkeep lá -> evitar que crie o .gitkeep por não ter arquivo solto na raiz!
             gitkeep_path = os.path.join(dirpath, ".gitkeep") # define o caminho do arquivo .gitkeep no diretório atual
             conteudo_diretorio_sem_gitkeep = [f for f in filenames if f != ".gitkeep"] + dirnames # lista com os nome dos arquivos e subpastas no diretório, excluindo o .gitkeep
             if not conteudo_diretorio_sem_gitkeep: # se o diretório estiver vazio
