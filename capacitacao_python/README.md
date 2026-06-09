@@ -109,3 +109,37 @@ repetição for tradicional acompanhada do método .append()?
 O list comprehension é uma otimização da sintaxe. Todas as três etapas de criar uma lista, percorrer os dados e inserí-los são feitos em uma só linha.  
 Já cria a lista e, dentro dos colchetes, já fala o que vai inserir, que dados vai percorrer e a condição para a inserção (se houver).  
 
+4) [automacao_versionamento]
+
+-> Explicação do funcionamento do programa:
+O programa é uma ferramenta de automação para gerenciar o versionamento de pastas em um repositório Git. O principal objetivo é percorrer toda a estrutura do projeto, garantindo que nenhuma subpasta seja deletada pelo Git por estar vazia.   
+Para isso, ele cria arquivos ".gitkeep" nas pastas que estejam vazias e remove esses arquivos quando a pasta passa a ter conteúdo.  
+Outro ponto importante é que ele faz um log de tudo que foi criado e removido, marcando a hora e data de cada ação.  
+
+Eu fiz um pequeno "overengeneering" utilizando POO, mas queria testar.  
+Primeiro, criei a classe GerenciadorLog, que inicia em seu construtor a pasta com nome padrão "logs" e o arquivo com nome padrão "logs.json".  
+Então, a função os.path.join cria o caminho da pasta e do arquivo de acorodo com o SO.  
+A função garantia_diretorio serve para checar se a pasta "logs" já existe e, se não, ele a cria.  
+A função salvar_execucao grava o registro monstando um dicionário com as informações geradas do que foi feito (data e hora, arquivos criados e arquivos removidos). É criada uma lista vazia para armazenar o histórico. Se o arquivo log.json já existir e não estiver corrompido, o código o abre no modo de leitura e depois adiciona com append o novo registro ao histórico, salvando tudo no formato json.  
+
+Já a classe GerenciadorGitkeep inicia no contrutor o ponto de partida e as ferramentas de trabalho.  
+Define que a varredura começa na pasta atual onde o script foi executado, instacia a classe GerenciadorLog e cria duas listas em branco onde vai colocar o que for criado e o que for removido.  
+A função percorrer_diretorios primeiro limpa as listas para não acabar misturando dados antigos e incia o loop do os.walk, que é o que vai "caminhar" pelas pastas e subpastas.  
+Antes de tomar qualquer decisão, 3 checagens são feitas:  
+- se alguma pasta tiver "logs" no meio do caminho, é dado continue
+- se "logs" estiver na lista de nomes de diretórios a serem percorridos, ele tira ele de lá
+- se a pasta atual que estiver percorrendo for a raiz, ignora-o, para não criar .gitkeep nela, já que muito provavelmente não existirá nenhum arquivo solto e ela possa ser considerada como vazia
+O código, para saber se uma pasta realemnte está vazia, junta os arquivos da pasta (os "filenames") e os da subpasta (os "dirnames"), mas ignora o .gitkeep, que é colocado lá quando é definido o path percorrido.
+Se a pasta estiver vazia (ou seja, não é colocado nenhum nome dentro da lista "conteudo_diretorio_sem_gitkeep"), é aberto um arquivo no modo de escrita em branco, que é deixado assim. Esse caminho é então adicionado a lista de "criados".
+Se estiver ocupada, é feita a verificação se há ainda algum .gitkeep sobrando. Se sim, ele é removido, o que é guardado na lista de removidos.
+Por fim, quando todas as patas já tiverem sido percorridas, tudo executado é salvo e os resultados são exibidos.
+Essa função de exibição (exibir_resultados) serve apenas como feedback visual do que foi feito e armazenado no log, mostrando quantos arquivos foram mexidos.
+O bloco "if __name__ == "__main__":" garante que só vai rodar se o arquivo for executado diretamente. Se ele for importado, não roda sozinho acidentalmente.
+
+-> Instruções de uso:  
+Na prática, o programa é colocado na pasta raiz, onde a verificação será feita e, então, é inciado/rodado. A automação é toda feita sozinha.  
+
+-> Resposta às perguntas teóricas:  
+
+■ Diferenças entre json.dump() vs json.dumps():  
+■ Diferenças entre json.load() vs json.loads():
