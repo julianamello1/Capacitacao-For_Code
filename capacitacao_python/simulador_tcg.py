@@ -30,19 +30,21 @@ def validar(valor):
 
 ## entrada de dados e tipos
 
-# monstro 1 
-nome_m1 = input("\nNome do monstro 1: ")
-pontos_vida_m1 = int(input("\tPontos de vida do monstro 1 (HP): "))
-validar(pontos_vida_m1)
-pontos_ataque_m1 = int(input("\tPontos de ataque do monstro 1: "))
-validar(pontos_ataque_m1)
+# monstro 1 (dictionary)
+monstro1 = {}
+monstro1["nome"] = input("\nNome do monstro 1: ")
+monstro1["pontos_vida"] = int(input("\tPontos de vida do monstro 1 (HP): "))
+validar(monstro1["pontos_vida"])
+monstro1["pontos_ataque"] = int(input("\tPontos de ataque do monstro 1: "))
+validar(monstro1["pontos_ataque"])
 
-# monstro 2 
-nome_m2 = input("\nNome do monstro 2: ")
-pontos_vida_m2 = int(input("\tPontos de vida do monstro 2 (HP): "))
-validar(pontos_vida_m2)
-pontos_ataque_m2 = int(input("\tPontos de ataque do monstro 2: "))
-validar(pontos_ataque_m2)
+# monstro 2 (dictionary)
+monstro2 = {}
+monstro2["nome"] = input("\nNome do monstro 2: ")
+monstro2["pontos_vida"] = int(input("\tPontos de vida do monstro 2 (HP): "))
+validar(monstro2["pontos_vida"])
+monstro2["pontos_ataque"] = int(input("\tPontos de ataque do monstro 2: "))
+validar(monstro2["pontos_ataque"])
 
 
 ## funções
@@ -59,8 +61,8 @@ def atacar(nome_atacante, ataque, nome_defensor, hp_defensor):
 
 # função que exibe placar
 def exibir_placar(nome_monstro1, pontos_vida_m1, nome_monstro2, pontos_vida_m2):
-    print(f"\n\tVida de {nome_m1}: {pontos_vida_m1} HP")
-    print(f"\n\tVida de {nome_m2}: {pontos_vida_m2} HP")
+    print(f"\n\tVida de {nome_monstro1}: {pontos_vida_m1} HP")
+    print(f"\n\tVida de {nome_monstro2}: {pontos_vida_m2} HP")
     return
 
 
@@ -71,25 +73,26 @@ def exibir_placar(nome_monstro1, pontos_vida_m1, nome_monstro2, pontos_vida_m2):
 print("\n\n\t\t----- DUELO INICIADO ------")
 
 turno = 1
-while pontos_vida_m1 > 0 and pontos_vida_m2 > 0:
+while monstro1["pontos_vida"] > 0 and monstro2["pontos_vida"] > 0:
     print(f"\n=== TURNO {turno} ===")
-    pontos_vida_m2 = atacar(nome_m1, pontos_ataque_m1, nome_m2, pontos_vida_m2)
+    #monstro 1 ataca
+    monstro2["pontos_vida"] = atacar(monstro1["nome"], monstro1["pontos_ataque"], monstro2["nome"], monstro2["pontos_vida"])
     # se monstro 2 sobreviver
-    if pontos_vida_m2 > 0:
+    if monstro2["pontos_vida"] > 0:
         # monstro 2 vira atacante
-        pontos_vida_m1 = atacar(nome_m2, pontos_ataque_m2, nome_m1, pontos_vida_m1)
+        monstro1["pontos_vida"] = atacar(monstro2["nome"], monstro2["pontos_ataque"], monstro1["nome"], monstro1["pontos_vida"])
 
-    exibir_placar(nome_m1, pontos_vida_m1, nome_m2, pontos_vida_m2)
+    exibir_placar(monstro1["nome"], monstro1["pontos_vida"], monstro2["nome"], monstro2["pontos_vida"])
 
     turno += 1 # aumenta turno
 
 
 print ("\n\n\t\t----- DUELO FINALIZADO -----") # printa após loop, ou seja, após alguma das vidas zerar
 
-if pontos_vida_m2 == 0:
-        print(f"\n\t{nome_m2} foi derrotado por {nome_m1}, que restou com {pontos_vida_m1} HP de vida!!!\n")
+if monstro2["pontos_vida"] == 0:
+        print(f"\n\t{monstro2['nome']} foi derrotado por {monstro1['nome']}, que restou com {monstro1['pontos_vida']} HP de vida!!!\n")
 else:
-        print(f"\n\t{nome_m1} foi derrotado por {nome_m2}, que restou com {pontos_vida_m2} HP de vida!!!\n")  
+        print(f"\n\t{monstro1['nome']} foi derrotado por {monstro2['nome']}, que restou com {monstro2['pontos_vida']} HP de vida!!!\n")  
 
 
 
