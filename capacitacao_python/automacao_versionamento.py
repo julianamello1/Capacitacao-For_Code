@@ -44,7 +44,7 @@ class GerenciadorLog: # classe que vai gerenciar a criação e a atualização d
         self.log_dir = log_dir
         self.log_file = log_file
         self.log_path = os.path.join(self.log_dir, self.log_file) # define o caminho do arquivo de log no computador
-        # pega a pasta "logs" e "log.json" e junta os dois para formar o endereço único logs/log.json
+        # pega a pasta "logs" e "log.json" e junta os dois para formar o endereço único logs/log.json, sem problemas com as diferenças entre sistemas operacionais
 
     def garantia_diretorio(self): # garante que o diretótio de logs existe!
         if not os.path.exists(self.log_dir): # se a pasta de logs não existir
@@ -100,4 +100,27 @@ class GerenciadorGitKeep: # classe que vai gerenciar a criação e remoção dos
             conteudo_diretorio_sem_gitkeep = [f for f in filenames if f != ".gitkeep"] + dirnames # lista com os nome dos arquivos e subpastas no diretório, excluindo o .gitkeep
             if not conteudo_diretorio_sem_gitkeep: # se o diretório estiver vazio
                 if not os.path.exists(gitkeep_path): # se não tiver arquivo .gitkeep
-                    
+                    with open(gitkeep_path, "w", encoding = "utf-8") as f: # cria o arquivo .gitkeep
+                        pass # cria arquivo vazio
+                    self.criados.append(gitkeep_path) # adiciona o caminho do arquivo .gitkeep criado à lista de criados
+            else: # se o diretório não estiver vazio
+                if os.path.exists(gitkeep_path): # se tiver arquivo .gitkeep em diretório não vazio (não pode)
+                    os.remove(gitkeep_path) # remove o arquivo .gitkeep
+                    self.removidos.append(gitkeep_path) # adiciona o caminho do arquivo .gitkeep removido à lista de removidos
+
+        # depois de acabar, tem que salvar o que fez no log
+        self.gerenciador_log.salvar_execucao(self.criados, self.removidos) # salva a execução atual no log, passando as listas de arquivos criados e removidos
+        self.exibir_resultados() # exibe os resultados da execução atual
+
+    def exibir_resultados(self): # exibe os resultados da execução atual
+        print("== AUTOMAÇÃO CONCLUÍDA ==") 
+        print(f"Arquivos .gitkeep criados: {len(self.criados)}") # exibe a quantidade de arquivos .gitkeep criados
+        print(f"Arquivos .gitkeep removidos: {len(self.removidos)}") # exibe a quantidade de arquivos .gitkeep removidos
+        print(f"Log salvo em: {self.gerenciador_log.log_path}\n") # exibe o caminho do arquivo de log atualizado
+
+
+# execução principal:
+if __name__ == "__main__": # verifica se o script está sendo executado diretamente (e não importado como módulo)
+    gerenciador = GerenciadorGitKeep(root_path=".") # instancia a classe de gerenciamento de arquivos .gitkeep
+    gerenciador.gerenciador_log.garantia_diretorio() # garante que o diretório de logs existe
+    gerenciador.percorrer_diretorios() # percorre os diretórios e aplica as regras do .gitkeep, além de salvar o log e exibir os resultados
