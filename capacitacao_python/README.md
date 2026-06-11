@@ -142,4 +142,9 @@ Na prática, o programa é colocado na pasta raiz, onde a verificação será fe
 -> Resposta às perguntas teóricas:  
 
 ■ Diferenças entre json.dump() vs json.dumps():  
-■ Diferenças entre json.load() vs json.loads():
+O "json.dump" (sem s) é usado para escrever e salvar dados direto em um arquivo físico .json. Ele precisa receber o arquivo aberto como argumento (usando o with open ... as f). Já "json.dumps" (com s), em vez de ser usado para salvar em um arquivo, ele serve para pegar um objeto Python e transformá-lo em uma linha de texto (string) formatada em json. Ele recebe a informação do Python e a retorna no formato de texto.
+
+Fluxo: Objeto Python ➔ Variável de Texto (String)
+
+■ Diferenças entre json.load() vs json.loads():  
+O "json.load" (sem s) serve para quando o arquivo json precisa ser aberto e lido ("with open ... af f"). Ele, então, retorna o que tinha dentro do arquivo como uma objeto Python. Por sua vez, "json.loads" (com s), é utilizado para quando não há um arquivo, mas sim apenas uma variável de texto comum que contém um formato json. Essa função serve como um "tradutor", recebendo dados que estão em string com as regras json, lendo os caracteres e os transformando em um objeto Python.
